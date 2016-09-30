@@ -3,7 +3,7 @@ package me.maciejb.etcd.client
 import akka.actor.{ActorSystem, Cancellable}
 import akka.http.scaladsl.model.HttpHeader
 import akka.http.scaladsl.settings.ClientConnectionSettings
-import akka.stream.Materializer
+import akka.stream.{ActorMaterializer, Materializer}
 import akka.stream.scaladsl.Source
 import me.maciejb.etcd.client.impl.EtcdClientImpl
 
@@ -76,7 +76,7 @@ object EtcdClient {
             sslEnabled: Boolean = false)
            (implicit ec: ExecutionContext,
             system: ActorSystem,
-            mat: Materializer): EtcdClient =
+            materalizer: ActorMaterializer): EtcdClient =
     new EtcdClientImpl(host, port, httpClientSettings, httpHeaders, sslEnabled)
 
 }
